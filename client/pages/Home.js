@@ -1,52 +1,63 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router';
+import "../style.css";
+import doggie from '../images/doggie.gif';
+
+
 
 const Home = () => {
-	const navigate = useNavigate();
-	const directToDashboard = () => {
-		navigate('/Dashboard');
-	};
+	const [username, setUsername] = useState(null);
+	const [password, setPassword] = useState(null);
+	const [error, setError] = useState(null);
 
+	console.log(username, password);
+	const navigate = useNavigate();
+	const directToDashboard = (e) => {
+		navigate('/Dashboard');
+
+		}
+	
 	const directToSignup = () => {
-		navigate('/Signup');
+		if (!isLogin) {
+			navigate("/Signup");
+		}
+		
 	};
+	
+	const isLogin = false; 
 	return (
+		
 		<div className="Home">
+		<center>
+			<div id='logo'>
+			<img src={doggie}/>
+			</div>
 			<h1>Woof Pack</h1>
-			<div>
-				<h3>Username</h3>
+
+			<form onSubmit={directToDashboard}>
 				<input
-					type="text"
-					name="username"
-					placeholder="username"
+				type="username"
+				id ="username"
+				placeholder="username"
+				required={true}
+				onChange={(e) => setUsername(e.target.value)}
 				/>
-			</div>
-			<div>
-				<h3>Passwoard</h3>
 				<input
-					type="text"
-					name="password"
-					placeholder="password"
+				type="password"
+				id ="password"
+				placeholder="password"
+				required={true}
+				onChange={(e) => setPassword(e.target.value)}
 				/>
-			</div>
-				<br/>
-			<div>
-				<button
-					className="primary-btn"
-					type="submit"
-					onClick={directToDashboard}
-				>
-					Login
-				</button>
-				<button
-				className="signup-btn"
-					type="submit"
-					onClick={directToSignup}
-				>
-					Be that Doggo
-				</button>
-			</div>
+				<input id="errorButton"type="submit"/>
+				</form>
+				<p className="loginSubheader">Don't have a pack? </p>
+				<button id="beThatDoggo" type="submit" onClick={directToSignup}>Be That Doggo</button>
+				</center>
+				
 		</div>
 	);
 };
 export default Home;
+

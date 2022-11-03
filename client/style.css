@@ -1,6 +1,226 @@
+@font-face {
+	font-family: 'Bungee Inline', sans-serif;
+	color: rgb(93, 61, 61);
+	src: url('https://fonts.cdnfonts.com/css/bungee-inline');
+}
+body {
+	background-color: #c0d6df;
+}
+h1 {
+	color: #fba92c;
+}
+
+h3 {
+	color: #14342B;
+}
+
+.Home {
+	position: relative;
+}
+
+.Home p {
+	color: #ffff;
+	animation: blinker 1s linear infinite;
+}
+
+@keyframes p {
+	50% {
+		opacity: 0;
+	}
+}
+.Home h1 {
+	color: #fba92c !important;
+	font-size: 100px;
+}
+
+.dogCard h1 {
+	color: #fba92c;
+	text-align: center;
+}
+.Signup h1 {
+	color: #fba92c;
+	text-align: center;
+}
+.Home h1 {
+	color: #fba92c;
+	text-align: center;
+}
+.Dashboard h1 {
+	color: #fba92c;
+	text-align: center;
+}
+
 img {
-	float: left;
-	width: 300px;
-	height: 400px;
-	object-fit: cover;
+	display: flex;
+	position: center;
+	/* float: left; */
+	max-width: 90%;
+	height: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 2rem;
+	box-shadow: 0px 5px 10px;
+}
+
+/* img:hover {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+	box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+}
+img:last-of-type:hover {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(196, 166, 92, 0.948);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(196, 166, 92, 0.948);
+	box-shadow: 0px 0px 30px 0px rgba(196, 166, 92, 0.948);
+} */
+
+
+.Dashboard button {
+	color: white;
+	background-color: rgb(93, 61, 61);
+	text-align: center;
+	justify-content: center;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	position: center;
+	border-radius: 1rem;
+	padding: 20px;
+}
+#woofmate-dash {
+	font-family: 'Bungee Inline';
+	background-color:#565656;
+	color: white; 
+	border-radius: 1rem;
+	padding: 5px;
+}
+
+.card-container {
+	padding: 10px;
+	position: center;
+	min-width: 400px;
+	border: solid #EAE0CC;
+	border-radius: 2rem;
+	height: 800px;
+	background-color:#EAE0CC;
+}
+.swipeButtons {
+	display: flex;
+	position: center;
+	margin: 20px;
+}
+
+#swipeButtonLeft,
+#swipeButtonRight {
+	font-family: 'Bungee Inline';
+	display: flex;
+	border-radius: 1rem;
+	background-color: rgb(190, 142, 156);
+	color: white;
+	padding: 20px;
+	justify-content: center;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 60px;
+}
+
+#logo img {
+	top: 0;
+	left: 0;
+	right: 0;
+	left: 50%;
+	width: 40%;
+	height: 20%;
+	bottom: 0;
+	display: flex;
+	box-shadow: none;
+}
+
+.Home button {
+	background-color: #565656;
+	color: white;
+	padding: 20px;
+}
+
+#errorButton {
+	background-color: #565656;
+	color: white;
+	padding: 15px;
+}
+
+.Home input {
+	height: 50px;
+	width: 200px;
+	justify-content: space-between;
+	font-size: 18px;
+}
+
+.Signup h1 {
+	font-size: 60px;
+}
+
+.Signup button {
+	font-family: 'Bungee Inline';
+	background-color: #565656;
+	color: white;
+	padding: 20px;
+}
+
+.Signup input {
+	height: 50px;
+	width: 200px;
+	justify-content: space-between;
+	font-size: 18px;
+}
+
+#errorButton2 {
+	font-family: 'Bungee Inline';
+	background-color: #565656;
+	color: white;
+	padding: 15px;
+}
+
+.Dashboard h1 {
+	font-size: 100px;
+	color: #fba92c;
+}
+.Dashboard button {
+	font-family: 'Bungee Inline';
+	background-color: #565656;
+	color: white;
+	padding: 15px;
+}
+
+button:hover {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(255, 162, 0, 0.67);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(255, 162, 0, 0.67);
+	box-shadow: 0px 0px 30px 0px rgba(255, 162, 0, 0.67);
+}
+
+#yoshi {
+	height: 200px;
+	border: none; 
+	box-shadow: none;
+}
+
+.dogTag input {
+	justify-content: space-between;
+	height: 50px;
+	width: 200px;
+	justify-content: space-between;
+	font-size: 18px;
+}
+
+.dogTag label { 
+	color:#565656;
 }
