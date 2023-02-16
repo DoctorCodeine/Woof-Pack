@@ -28,7 +28,7 @@ const Login = (): ReactElement => {
 	useEffect(() => {
 		const fetchUserLogin = async () => {
 			try{ 
-				const user = await fetch();
+				// const user = await fetch();
 			}
 			catch(err) {
 			
