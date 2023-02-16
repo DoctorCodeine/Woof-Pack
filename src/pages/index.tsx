@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Bungee_Inline } from '@next/font/google';
 import styles from 'woofpack2/styles/Login.module.scss';
 import logo from 'public/doggie.gif';
+import Link from 'next/link';
 
 import {
 	MantineProvider,
