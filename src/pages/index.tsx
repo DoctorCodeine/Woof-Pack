@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Bungee_Inline } from '@next/font/google';
 import styles from 'woofpack2/styles/Login.module.scss';
 import logo from 'public/doggie.gif';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import {
 	MantineProvider,
@@ -23,6 +23,7 @@ const bungee = Bungee_Inline({
 });
 
 const Login = () => {
+	const router = useRouter();
 	return (
 		<>
 			<MantineProvider
@@ -132,6 +133,16 @@ const Login = () => {
 						placeholder="Password"
 						id="password"
 					/>
+					<Center>
+					<div>
+						<Group sx={({marginTop: 10})}>
+							<Button
+							onClick={() => router.push('./Dashbaord')}
+							>Login</Button>
+							<Button>Get A Dog Tag</Button>
+						</Group>
+					</div>
+					</Center>
 				</div>
 			</MantineProvider>
 		</>
