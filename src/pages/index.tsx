@@ -11,7 +11,6 @@ import {
 	TextInput,
 	Text,
 	Group,
-	PasswordInputProps,
 	Anchor,
 	Center,
 	Button,
