@@ -29,3 +29,9 @@ app.use((req: Request, res: Response, err: ErrorRequestHandler) => {
   console.log(defaultError);
   return res.status(errorObject.status).json(errorObject.message);
 });
+
+app.listen((PORT: Number) => {
+  console.log(`listening on port ${PORT}`);
+});
+
+module.exports = app;

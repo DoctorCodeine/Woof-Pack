@@ -3,7 +3,7 @@ import { Bungee_Inline } from '@next/font/google';
 import styles from 'woofpack2/styles/Login.module.scss';
 import logo from 'public/doggie.gif';
 import { useRouter } from 'next/navigation';
-import {useState, useEffect, use, ReactElement} from 'react';
+import {useState, useEffect, ReactElement} from 'react';
 
 import {
 	MantineProvider,
@@ -23,15 +23,27 @@ const bungee = Bungee_Inline({
 
 const Login = (): ReactElement => {
 	const router = useRouter();
+	// const [email, setEmail] = useState(null);
+	// const [password, setPassword] = useState(null);
 	const [login, SetLogin] = useState(null);
 
 	useEffect(() => {
-		const fetchUserLogin = async () => {
+		const fetchUserLogin = async ():  Promise<any> => {
 			try{ 
-				// const user = await fetch();
+				const response: Response = await fetch('/pup/login', {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify ({
+						
+					})
+				})
+
+			return response.json() as Promise<{ data: any }>
+					
+			
 			}
 			catch(err) {
-			
+				console.log(err);
 		}
 
 		}
@@ -77,7 +89,8 @@ const Login = (): ReactElement => {
 					</h1>
 				</div>
 
-				<div
+	<form action='/dashboard' method='POST'>
+	<div
 					className="login-form"
 					style={styles}
 				>
@@ -106,6 +119,7 @@ const Login = (): ReactElement => {
 						</Anchor>
 					</Group>
 					<TextInput
+						type='email'
 						placeholder="Email"
 						id="email"
 						required
@@ -135,6 +149,7 @@ const Login = (): ReactElement => {
 						</Anchor>
 					</Group>
 					<PasswordInput
+						type='password'
 						placeholder="Password"
 						id="password"
 						required
@@ -150,6 +165,7 @@ const Login = (): ReactElement => {
 					</div>
 					</Center>
 				</div>
+	</form>
 			</MantineProvider>
 		</>
 	);
