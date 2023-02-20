@@ -16,12 +16,20 @@
 		"jsx": "preserve",
 		"incremental": true,
 		"noImplicitAny": false,
-		"baseUrl": ".",
-		"paths": {
-			"woofpack2/*": ["./src/*"]
-		}, 
+		"baseUrl": "."
+		// "paths": {
+		// 	"woofpack2/*": ["./src/*"]
+		// },
 	},
-  "watch": ["server/**/*", "server.ts"],
-	"include": ["src", "server", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"watch": ["server/**/*", "server.ts"],
+	"include": [
+		"src",
+		"src/server",
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"src/server",
+		"pages"
+	],
 	"exclude": ["node_modules", ""]
 }

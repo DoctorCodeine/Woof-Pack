@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Bungee_Inline } from '@next/font/google';
-import styles from 'woofpack2/styles/Login.module.scss';
+// import styles from 'woofpack2/styles/Login.module.scss';
 import logo from 'public/doggie.gif';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect, ReactElement} from 'react';
@@ -92,7 +92,7 @@ const Login = (): ReactElement => {
 	<form action='/dashboard' method='POST'>
 	<div
 					className="login-form"
-					style={styles}
+					// style={styles}
 				>
 					<Group>
 						<Text

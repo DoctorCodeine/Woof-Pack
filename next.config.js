@@ -3,15 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
+
 // const routes = {
-//   async rewrites() {
+//   async rewrites(){
 //     return [
-//       // Rewrite everything else to use `pages/index`
 //       {
-//         source: '/:path*',
-//         // destination: '/',
+//         source: 'src/:path*',
+//         destination: '/',
 //       },
 //     ];
-//   },
+//   }
 // }
-module.exports = nextConfig; // routes
+
+module.exports = nextConfig; //routes

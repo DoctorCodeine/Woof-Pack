@@ -5,7 +5,9 @@ import { ErrorRequestHandler } from "express";
 
 mongoose.set('strictQuery', true);
 
-const URI = 'mongodb+srv://aimee:123@cluster0.yu6qveb.mongodb.net/?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://aimee:123@cluster0.tzumcin.mongodb.net/?retryWrites=true&w=majorityy';
+
+//const URI: string = process.env.MONGOURI!;
 
 interface User {
   email: String,
@@ -17,17 +19,20 @@ dotenv.config({
 });
 
 mongoose
-.connect(URI)
-.then(() => console.log('🦆🦆🦆🦆🦆🦆🦆🦆  Mongoose is connected'))
-.catch((err: ErrorRequestHandler) => {
-	console.log(`Error connecting to Mongo DB: ${err}`);
-});
+	.connect(URI)
+	.then(() => console.log('🦆🦆🦆🦆 Mongoose is connected 🦆🦆🦆🦆'))
+	.catch((err: ErrorRequestHandler) => {
+		console.log('Error connecting to MongoDB: ', err);
+	});
+
 const UserPup = new mongoose.Schema({
 	email: {type: String, required: true, unique: true},
 	password: {type: String, required: true}
 });
 
-export const Pupper = mongoose.model<User>('Pupper', UserPup);
+const Pupper = mongoose.model<User>('Pupper', UserPup);
+
+export default Pupper;
 
 
 

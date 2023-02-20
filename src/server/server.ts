@@ -7,17 +7,19 @@ import express, {
 	NextFunction,
 } from 'express';
 
+import pupRouter from './routers/router'; 
+
 const app: Express = express();
 const PORT: number = 8000;
 app.use(express.json() as RequestHandler);
 app.use(express.urlencoded({ extended: true }) as RequestHandler);
 
-const pupRouter = express.Router();
 app.use('/pup', pupRouter);
 
 app.use('*', (req: Request, res: Response) => {
   return res.status(404).send('Page not found');
 });
+
 
 app.use((req: Request, res: Response, err: ErrorRequestHandler) => {
   const defaultError = { 
@@ -33,5 +35,3 @@ app.use((req: Request, res: Response, err: ErrorRequestHandler) => {
 app.listen(PORT, () => {
   console.log(`**** EXPRESS listening on port ${PORT}`);
 });
-
-// module.exports = app;
