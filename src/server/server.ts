@@ -8,7 +8,7 @@ import express, {
 } from 'express';
 
 const app: Express = express();
-const PORT: Number = 3333;
+const PORT: number = 8000;
 app.use(express.json() as RequestHandler);
 app.use(express.urlencoded({ extended: true }) as RequestHandler);
 
@@ -30,8 +30,8 @@ app.use((req: Request, res: Response, err: ErrorRequestHandler) => {
   return res.status(errorObject.status).json(errorObject.message);
 });
 
-app.listen((PORT: Number) => {
-  console.log(`listening on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`**** EXPRESS listening on port ${PORT}`);
 });
 
-module.exports = app;
+// module.exports = app;
