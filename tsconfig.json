@@ -16,10 +16,10 @@
 		"jsx": "preserve",
 		"incremental": true,
 		"noImplicitAny": false,
-		"baseUrl": "."
-		// "paths": {
-		// 	"woofpack2/*": ["./src/*"]
-		// },
+		"baseUrl": ".",
+		"paths": {
+			"woofpack2/*": ["./src/*"]
+		},
 	},
 	"watch": ["server/**/*", "server.ts"],
 	"include": [

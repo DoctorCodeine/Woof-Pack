@@ -4,15 +4,17 @@ const nextConfig = {
 }
 
 
-// const routes = {
-//   async rewrites(){
-//     return [
-//       {
-//         source: 'src/:path*',
-//         destination: '/',
-//       },
-//     ];
-//   }
-// }
+const routes = {
+  async rewrites(){
+    return [
+      {
+        source: 'src/:path*',
+        destination: '/',
+      },
+    ];
+  }
+}
 
-module.exports = nextConfig; //routes
+// module.exports = nextConfig; //routes
+
+module.exports = {nextConfig, routes};

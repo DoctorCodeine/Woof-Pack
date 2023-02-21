@@ -8,10 +8,12 @@ import express, {
 } from 'express';
 
 import pupRouter from './routers/router'; 
+import bodyParser from 'body-parser';
 
 const app: Express = express();
 const PORT: number = 8000;
 app.use(express.json() as RequestHandler);
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }) as RequestHandler);
 
 app.use('/pup', pupRouter);

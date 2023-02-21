@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import { Bungee_Inline } from '@next/font/google';
-// import styles from 'woofpack2/styles/Login.module.scss';
+import styles from '../styles/Login.module.scss';
 import logo from 'public/doggie.gif';
-import { useRouter } from 'next/navigation';
+import { useRouter, redirect } from 'next/navigation';
 import {useState, useEffect, ReactElement} from 'react';
+
 
 import {
 	MantineProvider,
@@ -21,34 +22,47 @@ const bungee = Bungee_Inline({
 	subsets: ['latin'],
 });
 
-const Login = (): ReactElement => {
+const Login = () => {
 	const router = useRouter();
-	// const [email, setEmail] = useState(null);
-	// const [password, setPassword] = useState(null);
-	const [login, SetLogin] = useState(null);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const getLoginInfo = async (event: {preventDefault:()=> void}) => {
+		event.preventDefault();
+
+		try { 
+			const response = await fetch('/pup/signin', 
+				{
+					method: 'POST',
+					headers:{'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						email,
+						password
+					})
+				});
+				const data = await response.json();
+				if (data.status === 200 && isLoggedIn) {
+					router.push('/dashboard')
+					
+				}
+		}
+		catch (error) {
+			alert('User cannot be found');
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
-		const fetchUserLogin = async ():  Promise<any> => {
-			try{ 
-				const response: Response = await fetch('/pup/login', {
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify ({
-						
-					})
-				})
-
-			return response.json() as Promise<{ data: any }>
-					
-			
-			}
-			catch(err) {
-				console.log(err);
+		if (email && password) {
+			redirect('/dashboard')
 		}
+	},[email,password]);
 
-		}
-	},[]);
-
+	const handleLogin = (event: {preventDefault:() => void}) => {
+		event.preventDefault();
+		router.push('/dashboard');
+	}
+	const isLoggedIn = true;
 	return (
 		<>
 			<MantineProvider
@@ -71,7 +85,6 @@ const Login = (): ReactElement => {
 					/>
 				</div>
 
-				{/* Heading */}
 				<div
 					style={{
 						display: 'flex',
@@ -88,12 +101,11 @@ const Login = (): ReactElement => {
 						Woof Pack
 					</h1>
 				</div>
-
-	<form action='/dashboard' method='POST'>
-	<div
+			<form onSubmit={getLoginInfo}>
+					<div
 					className="login-form"
-					// style={styles}
-				>
+					style={styles}
+						>
 					<Group>
 						<Text
 							component="label"
@@ -123,6 +135,7 @@ const Login = (): ReactElement => {
 						placeholder="Email"
 						id="email"
 						required
+						onChange={(event)=>{setEmail(event.target.value)}}
 					/>
 					<Group>
 						<Text
@@ -153,19 +166,30 @@ const Login = (): ReactElement => {
 						placeholder="Password"
 						id="password"
 						required
+						onChange={(event)=>{setPassword(event.target.value)}}
 					/>
 					<Center>
 					<div>
 						<Group sx={({marginTop: 10})}>
+
 							<Button
-							onClick={() => router.push('./Dashbaord')}
-							>Login</Button>
-							<Button>Get A Dog Tag</Button>
+							type ='submit'
+							onClick={handleLogin}
+							>
+								Login
+							</Button>
+
+							<Button
+							type ='submit'
+							onClick={() => router.push('/getADogTag')}
+							>
+								Get A Dog Tag
+							</Button>
 						</Group>
 					</div>
 					</Center>
 				</div>
-	</form>
+				</form>
 			</MantineProvider>
 		</>
 	);
