@@ -7,7 +7,7 @@ pupRouter.use(express.json());
 
 //http://localhost:8000/pup/
 pupRouter.get('/',dogController.getDogs, (req: Request, res: Response) =>{
-  console.log('Frontend speaking to backend');
+  // console.log('Frontend speaking to backend');
   return res.status(200).json(res.locals.dogPack);
 });
 

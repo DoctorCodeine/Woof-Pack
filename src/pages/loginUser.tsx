@@ -6,66 +6,82 @@ import styles from '../styles/Login.module.scss';
 import logo from 'public/doggie.gif';
 import Image from 'next/image';
 import { Button } from '@mantine/core';
+import { promises } from 'dns';
+
+const LoginUser = ({ email, password }) => {
+  // interface User {
+  //   email: string;
+  //   password: string;
+  // }
+	const router = useRouter();
+	const [error, setError] = useState('');
+	const [inputEmail, setInputEmail] = useState(email);
+	const [inputPassword, setInputPassword] = useState(password);
 
 
-const LoginUser = ({email, password}) => {
-  const router = useRouter();
-  const [error, setError] = useState('');
-  const [inputEmail, setInputEmail] = useState(email);
-  const [inputPassword, setInputPassword] = useState(password);
-
-  
-  const handleLogin = async (e: any) => {
-    e.preventDefault();
-    try{ 
-      const response = await fetch('http://localhost:8000/pup/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: inputEmail, password: inputPassword}),
-    });
-    const data = await response.json();
-    
-    if (inputEmail === data.email && data.password === inputPassword && response.status === 200) {
+  const findUser = (email: String, password: String) => {
+    if (inputEmail === email && inputPassword === password) {
       router.push('/dashboard');
-    }
-
-    } catch (error) {
+    } else {
       setError('Incorrect username or password. Please try again.');
-      console.log(error);
     }
-
   };
 
-  const handleEmail = (email: string) => {
-    setInputEmail(email);
-  };
+	const handleLogin = async (e:  React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		try {
+			const response = await fetch('http://localhost:8000/pup/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ email: inputEmail, password: inputPassword}),
+			});
+			const data = await response.json()
+      findUser(data.email, data.password);
 
-  const handlePassword = (password: string) => {
-    setInputPassword(password);
-  };
-  
-  
-  return(
-    <>
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Username:
-          <input type="email" name="email" onChange={e => handleEmail(e.target.value)}/>
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" onChange={e => handlePassword(e.target.value)}/>
-        </label>
-        <Button type="submit">Submit</Button>
-      </form>
-      {error && <p>{error}</p>}
-    </div>
-    </>
-  );
+		} catch (error) {
+			setError('Incorrect username or password. Please try again.');
+			console.error(error);
+		}
+	};
+
+	const handleEmail = (email: string) => {
+		setInputEmail(email);
+	};
+
+	const handlePassword = (password: string) => {
+		setInputPassword(password);
+	};
+
+	return (
+		<>
+			<div>
+				<h1>Login Page</h1>
+				<form onSubmit={handleLogin}>
+					<label>
+						Username:
+						<input
+							type="email"
+							name="email"
+              required
+							onChange={(e) => handleEmail(e.target.value)}
+              />
+					</label>
+					<label>
+						Password:
+						<input
+							type="password"
+							name="password"
+              required
+							onChange={(e) => handlePassword(e.target.value)}
+              />
+					</label>
+					<Button type="submit">Submit</Button>
+				</form>
+			</div>
+		</>
+	);
 };
 
 export default LoginUser;
