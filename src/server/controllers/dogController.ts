@@ -1,5 +1,5 @@
 import Pupper from '../database/pupModel';
-// import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
+import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
 import { ResponseObject } from '../../../types';
 
 interface dogController {
@@ -23,26 +23,26 @@ const dogController: dogController = {
 					status: 418,
 					message: {err: `This is the error: ${err.message}`},
 				});
+			})
+			.finally(() => {
+				res.end();
 			});
-	},
+		},
 	//working
-	postDog: (req, res, next) => {
+	postDog: async (req, res, next) => {
 		const { email, password } = req.body;
-
-		Pupper.create({email, password}, async (err, dog) => {
-			if (err) {
-				return (next({
-					log: 'There is an error in creating this user',
-					status: 418, 
-					message: {err: `Error is occuring at dogController.postDog. ${err}`
-				}}));
-			}
-			else {
-				dog = await res.locals.newDog;
-				return next();
-			}
-		})
-		
+		try { 
+			const newDog = await Pupper.create({email, password});
+			res.locals.newDog = newDog;
+			return next();
+		}
+		catch (err) {
+			return (next({
+				log: 'There is an error in creating this user',
+				status: 418, 
+				message: {err: `Error is occuring at dogController.postDog. ${err}`
+			}}));
+		};
 	},
 
 	updateDog: (req, res, next) => {
@@ -65,9 +65,9 @@ const dogController: dogController = {
 		});
 	},
 
-	//working
+	// working
 	deleteDog: (req, res, next) => {
-		console.log('this is dog to be deleted:', req.params);
+		// console.log('this is dog to/ be deleted:', req.params);
     Pupper.findOneAndDelete({_id: req.params.id}, (err, deletedDogDoc) => {
       if (err) {
         return next({

@@ -1,15 +1,11 @@
 import Head from 'next/head';
-import Login from './Login';
+import Login from './login';
+
 
 export default function Home() {
 	return (
 		<>
 			<Head>
-				<link
-					rel="tab-icon"
-					href="/public/favicon.ico"
-				/>
-
 				<title>Woof Pack</title>
 				<meta
 					name="description"
@@ -19,9 +15,15 @@ export default function Home() {
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
+					<link
+						rel="icon"
+						type="image/png"
+						href="/image/favicon.ico"
+					/>
 			</Head>
-			<div></div>
+			<div>
 			<Login />
+			</div>
 		</>
 	);
 }

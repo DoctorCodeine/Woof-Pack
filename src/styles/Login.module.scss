@@ -1,3 +1,6 @@
-$font-face: 'Bungee Inline', sans-serif;
-$primary-color: #fba92c;
+@font-face {
+	font-family: 'bungee inline';
+	src: url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+}
 
+$primary-color: #fba92c;

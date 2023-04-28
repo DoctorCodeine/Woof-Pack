@@ -6,34 +6,25 @@ interface userAuth {
 };
 
 const authController: userAuth = {
-
   verifyUser:(req, res, next) => {
-    const {email, password} = req.body;
+    const {email} = req.body;
     console.log('this is user:', req.body);
-    
-    if (email && password) {
-      Pupper.findOne({ email: email, password: password}, (err, existingUser) => { 
-        if (err) {
-          return next({
-            log: 'There was an error finding the user in the database',
-            status: 418,
-            message: {err: `There is an error occuring in authController.verifyUser. This is the error ${err.message}`}
-          });
+      Pupper.findOne({ email })
+      .then((data) => {
+        if (data !== null) {
+          res.locals.foundUser = data; 
+          return next();
         }
-        else if (!email || !password){
-          return (next({
-            log: 'Incorrect password or email provided',
-            status: 422,
-            message: {err: `There is an error occuring in authController.verifyUser. This is the error ${err.message}`}
-          }));
-        }
-        res.locals.foundUser = existingUser;
-        return next();
+      })
+      .catch((err)=> {
+        return next({
+         log: 'User cannot be found',
+         status: 418, 
+         message: {err: `There is an error occuring in authController.verifyUser. ${err.message}`} 
+        })
       });
-    }
-  },
-
-};
+  }
+}
 
 export default authController;
 
