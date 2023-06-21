@@ -179,5 +179,9 @@
 	"devDependencies": {
 		"bcrypt": "^5.1.0",
 		"uuid": "^9.0.0"
-	}
+	},
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/aimeeqnguyen/Woof-Pack.git"
+}
 }
