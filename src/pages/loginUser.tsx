@@ -6,7 +6,7 @@ import styles from '../styles/Login.module.scss';
 import logo from 'public/doggie.gif';
 import Image from 'next/image';
 import { Button } from '@mantine/core';
-import { promises } from 'dns';
+// import { promises } from 'dns';
 
 const LoginUser = ({ email, password }) => {
   // interface User {
